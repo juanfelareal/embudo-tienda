@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dónde se te cae el carrito — Juanfe León</title>
+<meta name="description" content="Cinco números de tu Shopify y te digo en qué escalón del embudo se está yendo la plata, y cuánto vale arreglarlo.">
+<meta property="og:title" content="Dónde se te cae el carrito">
+<meta property="og:description" content="En qué escalón del embudo se está yendo la plata.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --paper:#f6f6f4; --raised:#ffffff; --ink:#0e0e10; --muted:#5b5b63;
+  --line:#d9d9de; --accent:#1f3dff; --on-accent:#fff;
+  --marker:#ffe033; --on-marker:#0e0e10; --signal:#d12e14; --band:#ecebe7; --ok:#1a7f37;
+  --display:"Archivo","Arial Black",system-ui,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#0e0e10; --raised:#1a1a1e; --ink:#f6f6f4; --muted:#a2a2aa;
+  --line:#2e2e34; --accent:#7a8cff; --on-accent:#0e0e10;
+  --signal:#ff6a4d; --band:#17171b; --ok:#5fc97a; color-scheme:dark;
+}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+h1{font-size:clamp(33px,7.2vw,60px);font-weight:900;letter-spacing:-.045em;line-height:.94}
+h2{font-size:clamp(20px,3vw,27px);font-weight:900;letter-spacing:-.03em;line-height:1.05}
+h3{font-size:14px;font-weight:800}
+p{margin:0}
+.kicker{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.stack{display:flex;flex-direction:column}
+.g1{gap:8px}.g2{gap:16px}.g3{gap:26px}
+.muted{color:var(--muted)}
+header{background:var(--band);padding-block:clamp(36px,6vw,64px)}
+section{padding-block:clamp(32px,5vw,54px)}
+.lede{font-size:clamp(16px,2vw,19px);line-height:1.45;max-width:58ch}
+fieldset{border:1px solid var(--line);background:var(--raised);padding:16px;margin:0;min-width:0}
+legend{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);padding:0 6px;margin-left:-6px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:16px}
+.f{display:grid;grid-template-columns:1fr 120px;gap:8px 12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+fieldset .f:last-of-type{border-bottom:0;padding-bottom:0}
+.f label{font-size:13.5px;line-height:1.3;min-width:0}
+.f .hint{display:block;font-size:11.5px;color:var(--muted);line-height:1.3;margin-top:2px}
+input[type=number]{width:100%;font-family:var(--mono);font-size:13px;padding:7px 8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:0;text-align:right;font-variant-numeric:tabular-nums}
+input:focus-visible,button:focus-visible,input[type=checkbox]:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.chk{display:flex;gap:11px;align-items:flex-start;padding-top:10px;border-top:1px solid var(--line);margin-top:4px}
+.chk input{width:21px;height:21px;accent-color:var(--accent);margin:0;flex:none}
+.chk span{font-size:13px;line-height:1.35}
+.btn{font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--muted);padding:8px 13px;cursor:pointer;align-self:flex-start}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.verd{border-left:3px solid var(--accent);padding-left:15px}
+.verd.bad{border-left-color:var(--signal)}
+.verd p{font-size:14.5px;line-height:1.5}
+footer{border-top:1px solid var(--line);padding-block:26px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);line-height:1.8}
+.pasos{border:1px solid var(--line);background:var(--raised)}
+.p{display:grid;grid-template-columns:210px 1fr 86px;gap:7px 14px;padding:14px 16px;border-bottom:1px solid var(--line);align-items:center}
+.p:last-child{border-bottom:0}
+@media (max-width:620px){.p{grid-template-columns:1fr 86px}.p .bar{grid-column:1/3;order:4}}
+.p .t{font-size:14px;font-weight:500;line-height:1.3}
+.p .t small{display:block;font-size:11.5px;color:var(--muted);font-weight:400;margin-top:2px}
+.p .bar{height:22px;background:var(--band);position:relative;min-width:0;border:1px solid var(--line)}
+.p .bar i{display:block;height:100%;background:var(--accent);transition:width .2s ease}
+.p .bar b{position:absolute;top:0;bottom:0;width:2px;background:var(--ink);opacity:.45}
+.p .n{font-family:var(--mono);font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.p.mal .bar i{background:var(--signal)}
+.p.mal .n{color:var(--signal)}
+.p .rango{font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--muted);text-align:right;grid-column:3;line-height:1.2}
+@media (max-width:620px){.p .rango{grid-column:2}}
+.hallazgo{border:1px solid var(--line);background:var(--raised);padding:22px 18px;display:grid;grid-template-columns:auto 1fr;gap:6px 22px;align-items:center}
+@media (max-width:560px){.hallazgo{grid-template-columns:1fr}}
+.hallazgo .big{font-family:var(--display);font-size:clamp(36px,8vw,60px);font-weight:900;letter-spacing:-.05em;line-height:.9;color:var(--signal);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hallazgo .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);display:block}
+.hallazgo .exp{font-size:14.5px;line-height:1.45;margin-top:7px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.kpi{background:var(--raised);padding:15px;min-width:0}
+.kpi .v{font-family:var(--display);font-size:25px;font-weight:900;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;display:block}
+.kpi .l{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.3;display:block;margin-top:6px}
+.disp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.disp>div{background:var(--raised);padding:16px;min-width:0}
+.disp .v{font-family:var(--display);font-size:30px;font-weight:900;letter-spacing:-.04em;line-height:1;display:block;font-variant-numeric:tabular-nums}
+.disp .l{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-top:6px}
+.disp .peor .v{color:var(--signal)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap stack g2">
+    <p class="kicker">Recurso · @juanfleonleon</p>
+    <h1>Dónde se te<br>cae el carrito</h1>
+    <p class="lede">Una marca tenía el 47% de paso del carrito al checkout. Debería ser más del 70%. Esos veintitrés puntos eran todo el crecimiento del trimestre, y no se arreglaban con más pauta. Poné cinco números de tu Shopify y te digo en qué escalón se te está yendo la plata.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap stack g3">
+    <div class="grid2">
+      <fieldset>
+        <legend>Tu embudo, últimos 30 días</legend>
+        <div class="f"><label for="sesiones">Sesiones<small class="hint">Analíticas → Sesiones</small></label><input type="number" id="sesiones" value="94000" min="1" step="100"></div>
+        <div class="f"><label for="verProd">Vieron una ficha de producto</label><input type="number" id="verProd" value="42300" min="0" step="100"></div>
+        <div class="f"><label for="carrito">Agregaron al carrito</label><input type="number" id="carrito" value="3800" min="0" step="10"></div>
+        <div class="f"><label for="checkout">Iniciaron el checkout</label><input type="number" id="checkout" value="1786" min="0" step="10"></div>
+        <div class="f"><label for="compras">Compraron</label><input type="number" id="compras" value="1279" min="0" step="10"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Para traducirlo a plata</legend>
+        <div class="f"><label for="ticket">Ticket promedio</label><input type="number" id="ticket" value="170000" min="1" step="1000"></div>
+        <div class="f"><label for="convMovil">Conversión en celular (%)<small class="hint">Analíticas → por tipo de dispositivo</small></label><input type="number" id="convMovil" value="0.9" min="0" max="100" step="0.01"></div>
+        <div class="f"><label for="convEscr">Conversión en computador (%)</label><input type="number" id="convEscr" value="2.4" min="0" max="100" step="0.01"></div>
+        <div class="f"><label for="pctMovil">Del tráfico, cuánto es celular (%)</label><input type="number" id="pctMovil" value="78" min="0" max="100" step="1"></div>
+      </fieldset>
+    </div>
+    <button class="btn" id="reset" type="button">Volver al ejemplo</button>
+  </div>
+</section>
+
+<section style="background:var(--band)">
+  <div class="wrap stack g3">
+    <div class="stack g1">
+      <p class="kicker">01 — Escalón por escalón</p>
+      <h2>Tu embudo contra el rango sano</h2>
+      <p class="lede muted">La línea vertical en cada barra es el piso del rango en el que se mueven las tiendas que manejamos. No es una ley de la industria: es lo que vemos.</p>
+    </div>
+    <div class="pasos" id="pasos"></div>
+
+    <div class="kpis">
+      <div class="kpi"><span class="v" id="kConv">—</span><span class="l">Conversión<br>total</span></div>
+      <div class="kpi"><span class="v" id="kVenta">—</span><span class="l">Venta del período<br>al ticket que pusiste</span></div>
+      <div class="kpi"><span class="v" id="kPeor">—</span><span class="l">El escalón<br>más flojo</span></div>
+      <div class="kpi"><span class="v" id="kVale">—</span><span class="l">Vale arreglarlo<br>al mes</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack g3">
+    <div class="hallazgo" id="hallazgo">
+      <span class="big" id="hBig">—</span>
+      <div><span class="lab">El hallazgo</span><p class="exp" id="hExp">—</p></div>
+    </div>
+
+    <div class="stack g2">
+      <h2>Celular contra computador</h2>
+      <div class="disp">
+        <div id="dMovil"><span class="v" id="vMovil">—</span><span class="l">Conversión en celular<br>con <span id="pMovil">—</span> del tráfico</span></div>
+        <div id="dEscr"><span class="v" id="vEscr">—</span><span class="l">Conversión en computador</span></div>
+      </div>
+      <div class="verd" id="verdMovil"><p>—</p></div>
+    </div>
+
+    <div class="verd" id="verd"><p>—</p></div>
+  </div>
+</section>
+
+<section style="background:var(--band)">
+  <div class="wrap stack g2">
+    <h2>Qué mirar en cada escalón</h2>
+    <p class="lede muted"><strong>Sesión a ficha de producto:</strong> si es bajo, el problema está antes de la tienda. Los anuncios prometen algo que la página de llegada no muestra, o la colección no deja ver colores y tallas.</p>
+    <p class="lede muted"><strong>Ficha a carrito:</strong> precio, fotos, reseñas, el botón que queda debajo del pliegue en celular, variantes agotadas que se muestran disponibles.</p>
+    <p class="lede muted"><strong>Carrito a checkout:</strong> casi siempre es el costo de envío apareciendo tarde. El cliente llegó con un precio en la cabeza y le sumaron veinte mil al final.</p>
+    <p class="lede muted"><strong>Checkout a compra:</strong> medios de pago, pedir cuenta obligatoria, formularios largos, o una pasarela que se cae en celular. Hacé el pedido vos mismo desde tu teléfono, con datos, no con wifi.</p>
+    <p class="lede muted">Antes de tocar nada de esto, <a href="https://juanfelareal.github.io/fugas-tienda/">corré el checklist de las 23 fugas</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Juanfe León · @juanfleonleon</p>
+    <p>Rangos sacados de las tiendas que manejamos · noviembre 2026</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var ids=['sesiones','verProd','carrito','checkout','compras','ticket','convMovil','convEscr','pctMovil'];
+  var DEF={sesiones:94000,verProd:42300,carrito:3800,checkout:1786,compras:1279,ticket:170000,convMovil:0.9,convEscr:2.4,pctMovil:78};
+  var fmt=new Intl.NumberFormat('es-CO',{maximumFractionDigits:0});
+  var KEY='embudo-tienda-v1';
+  function v(id){var n=parseFloat(document.getElementById(id).value);return isFinite(n)?n:0;}
+  function money(n){return (n<0?'−':'')+'$'+fmt.format(Math.abs(Math.round(n)));}
+
+  var ESCALONES=[
+    {de:'sesiones',a:'verProd',t:'De sesión a ficha de producto',d:'Cuánta gente llega a ver algo concreto',piso:40,techo:60},
+    {de:'verProd',a:'carrito',t:'De ficha a carrito',d:'El producto convence o no convence',piso:7,techo:12},
+    {de:'carrito',a:'checkout',t:'De carrito a checkout',d:'Acá aparece el costo de envío',piso:70,techo:85},
+    {de:'checkout',a:'compras',t:'De checkout a compra',d:'Medios de pago y formularios',piso:50,techo:65}
+  ];
+
+  function render(){
+    var datos={}; ids.forEach(function(i){datos[i]=v(i);});
+    var html='', peor=null;
+
+    ESCALONES.forEach(function(e){
+      var base=datos[e.de], fin=datos[e.a];
+      var pct=base>0?(fin/base*100):0;
+      var brecha=e.piso-pct;
+      if(pct>0&&brecha>0&&(!peor||brecha>peor.brecha)) peor={e:e,pct:pct,brecha:brecha,base:base,fin:fin};
+      var ancho=Math.max(0,Math.min(100,pct/Math.max(e.techo,pct)*100));
+      var marca=Math.max(0,Math.min(100,e.piso/Math.max(e.techo,pct)*100));
+      html+='<div class="p'+(pct<e.piso?' mal':'')+'">'
+        +'<div class="t">'+e.t+'<small>'+e.d+'</small></div>'
+        +'<div class="bar"><i style="width:'+ancho.toFixed(1)+'%"></i><b style="left:'+marca.toFixed(1)+'%"></b></div>'
+        +'<div class="n">'+pct.toFixed(1)+'%</div>'
+        +'<div class="rango">sano: '+e.piso+'–'+e.techo+'%</div></div>';
+    });
+    document.getElementById('pasos').innerHTML=html;
+
+    var conv=datos.sesiones>0?(datos.compras/datos.sesiones*100):0;
+    document.getElementById('kConv').textContent=conv.toFixed(2)+'%';
+    document.getElementById('kVenta').textContent=money(datos.compras*datos.ticket);
+
+    var h=document.getElementById('hallazgo'), hb=document.getElementById('hBig'), he=document.getElementById('hExp');
+    if(!peor){
+      document.getElementById('kPeor').textContent='—';
+      document.getElementById('kVale').textContent='—';
+      hb.textContent='✓'; hb.style.color='var(--accent)';
+      he.innerHTML='<strong>Los cuatro escalones están dentro del rango sano.</strong> Si querés crecer, el cuello de botella ya no es la tienda: es cuánto tráfico le estás llevando y a qué costo.';
+    } else {
+      // cuánto valdría llevar ese escalón al piso del rango
+      var factor=peor.e.piso/peor.pct;
+      var comprasNuevas=datos.compras*factor;
+      var extra=(comprasNuevas-datos.compras)*datos.ticket;
+      document.getElementById('kPeor').textContent=peor.pct.toFixed(1)+'%';
+      document.getElementById('kVale').textContent=money(extra);
+      hb.textContent='+'+money(extra).replace('$','$'); hb.style.color='var(--signal)';
+      he.innerHTML='<strong>'+peor.e.t.toLowerCase().replace('de ','De ')+' estás en '+peor.pct.toFixed(1)+'% y el piso sano es '+peor.e.piso+'%.</strong> Solo con llegar a ese piso, sin traer una visita más, serían '+money(extra)+' al mes y '+fmt.format(Math.round(comprasNuevas-datos.compras))+' pedidos adicionales, asumiendo que los que pasen de más compren al mismo ritmo que los de hoy. '+peor.e.d+'.';
+    }
+
+    var cm=datos.convMovil, ce=datos.convEscr, pm=datos.pctMovil;
+    document.getElementById('vMovil').textContent=cm.toFixed(2)+'%';
+    document.getElementById('vEscr').textContent=ce.toFixed(2)+'%';
+    document.getElementById('pMovil').textContent=pm.toFixed(0)+'%';
+    document.getElementById('dMovil').className=cm<ce?'peor':'';
+    document.getElementById('dEscr').className=ce<cm?'peor':'';
+
+    var vm=document.getElementById('verdMovil'), pm2=vm.querySelector('p');
+    if(cm>0&&ce>0&&cm<ce*0.75&&pm>=60){
+      var sesMovil=datos.sesiones*pm/100;
+      var gana=sesMovil*((ce-cm)/100)*datos.ticket;
+      vm.className='verd bad';
+      pm2.innerHTML='<strong>Tu celular convierte '+((1-cm/ce)*100).toFixed(0)+'% menos que el computador, y ahí está el '+pm.toFixed(0)+'% de tu tráfico.</strong> Si el celular convirtiera igual que el escritorio serían '+money(gana)+' más al mes. Esto casi nunca es un problema de diseño: es peso de imágenes, el botón de compra debajo del pliegue, y el checkout en una pantalla de seis pulgadas.';
+    } else if(cm>0&&ce>0&&cm<ce){
+      vm.className='verd';
+      pm2.innerHTML='El celular convierte por debajo del computador, que es lo normal, pero la diferencia no es alarmante. Vale la pena revisarlo igual si el celular es la mayoría de tu tráfico.';
+    } else {
+      vm.className='verd';
+      pm2.innerHTML='Sin una diferencia marcada entre celular y computador, el problema no está en el dispositivo. Mirá el escalón más flojo de arriba.';
+    }
+
+    var vd=document.getElementById('verd'), p=vd.querySelector('p');
+    if(conv<=0){ vd.className='verd'; p.textContent='Poné tus números para ver el diagnóstico.'; }
+    else if(conv<1){ vd.className='verd bad'; p.innerHTML='<strong>Con '+conv.toFixed(2)+'% de conversión total, cada peso de pauta rinde la mitad de lo que podría.</strong> Debajo de 1% hay algo roto, no algo mejorable. Empezá por el escalón más flojo y volvé a medir en dos semanas.'; }
+    else if(conv<1.5){ vd.className='verd bad'; p.innerHTML='<strong>'+conv.toFixed(2)+'% está en el piso de lo aceptable.</strong> En una marca que acompañamos, pasar de 1,36% a 1,50% valía veintiocho millones más al mes sin subir un peso de inversión. Es la palanca más barata que tenés.'; }
+    else { vd.className='verd'; p.innerHTML='<strong>'+conv.toFixed(2)+'% es una conversión sana.</strong> A este nivel la tienda ya no es el freno. El siguiente número que conviene mirar es el break-even: <a href="https://juanfelareal.github.io/break-even-roas/">calculalo acá</a>.'; }
+
+    try{localStorage.setItem(KEY,JSON.stringify(datos));}catch(e){}
+  }
+
+  ids.forEach(function(i){document.getElementById(i).addEventListener('input',render);});
+  document.getElementById('reset').addEventListener('click',function(){
+    ids.forEach(function(i){document.getElementById(i).value=DEF[i];});
+    try{localStorage.removeItem(KEY);}catch(e){} render();
+  });
+  try{
+    var s=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(s) ids.forEach(function(i){if(typeof s[i]==='number')document.getElementById(i).value=s[i];});
+  }catch(e){}
+  render();
+})();
+</script>
+</body>
+</html>
